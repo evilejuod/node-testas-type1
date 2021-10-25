@@ -33,12 +33,4 @@ router.post('/register', validateRegister, async (req, res) =>{
 //POST /accounts/login
 
 
-
-
-
-
-
-
-
-
 module.exports = router;
