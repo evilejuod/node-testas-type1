@@ -1,9 +1,9 @@
-//Register
+//login
 
-console.log('register')
-const URL = 'http://localhost:3000/accounts'
+const URL = 'http://localhost:3000/accounts';
 
-const formEL = document.getElementById('register-form');
+const formEL = document.getElementById('login-form');
+// const errorEl = document.querySelector('.errors');
 
 formEL.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -11,7 +11,7 @@ formEL.addEventListener('submit', async (e) => {
     const formData = new FormData(formEL);
     console.log('formData', Object.fromEntries(formData));
     // send fetch
-    const resp = await fetch(`${URL}/register`, {
+    const resp = await fetch(`${URL}/login`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
@@ -19,16 +19,16 @@ formEL.addEventListener('submit', async (e) => {
         body: JSON.stringify(Object.fromEntries(formData)),
     });
     const dataBack = await resp.json();
-    console.log('dataBack', dataBack);
+    console.log('dataBack login', dataBack);
+    // if (dataBack.error) {
+    //     showError(dataBack.error, errorEl);
+    // }
+
     if (dataBack.msg === 'success') {
         const { email, token } = dataBack.data;
-        localStorage.setItem('name', full_name);
         localStorage.setItem('email', email);
         localStorage.setItem('token', token);
         // redirect to home page
-
-        window.location = 'login.html';
+        window.location = 'register.html';
     }
-
 });
-

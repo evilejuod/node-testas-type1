@@ -5,7 +5,7 @@ async function validateRegister(req, res, next) {
   console.log('body got to validate:', req.body);
   // validate body using joi
   const schema = joi.object({
-    full_name: joi.string().min(3).required(),
+    full_name: joi.string(),
     email: joi.string().email().required(),
     password: joi.string().min(6).required(),
   });

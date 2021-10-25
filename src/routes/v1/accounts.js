@@ -31,6 +31,27 @@ router.post('/register', validateRegister, async (req, res) =>{
 })
 
 //POST /accounts/login
+router.post('/login', validateRegister, async (req, res) =>{
+    const sql = 'SELECT * FROM users WHERE email = ?';
+    const dbResult = await dbAction(sql, [req.body.email]);
+    // check if email exists
+    if (dbResult.length !== 1) {
+        return dbFail(res, 'email does not exists', 400);
+    }
+    // check password
+    if (!verifyHash(req.body.password, dbResult[0].password)) {
+        return dbFail(res, 'passwords not match');
+    }
+    // pass match
+    const token = jwt.sign({ email: req.body.email }, jwtSecret, {
+        expiresIn: '48h',
+    });
 
+    const logInUser = {
+        email: req.body.email,
+        token: token,
+    };
+    dbSuccess(res, logInUser);
+})
 
 module.exports = router;

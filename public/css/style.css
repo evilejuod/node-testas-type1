@@ -34,8 +34,8 @@ img{
     color: #888888;
     margin-top: 12px;
 }
-.registerContainer{
-    width: 50%;
+.formContainer{
+    width: 30%;
     display: flex;
     flex-direction: column;
 
