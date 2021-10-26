@@ -38,12 +38,17 @@ img{
     width: 30%;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+
+
 
 }
 .title{
     margin-top: 60px;
     margin-bottom: 5px;
     font-weight: bold;
+    text-decoration: none;
+
 }
 label{
     font-weight: bold;
@@ -93,10 +98,16 @@ input{
     align-items: center;
     margin: 20px;
     text-align: center;
+    text-decoration: none;
+
+
 }
 .text{
     color: #888888;
     margin-top: 5px;
+    text-decoration: none;
+    border: none;
+
 }
 .billsContainer{
     width: 80%;
@@ -118,4 +129,13 @@ table tr:nth-child(even){
 td, th{
     height: 37px;
     padding: 0 20px;
+}
+a:active, :focus{
+    outline: none;
+    border: 0;
+}
+.idText{
+    color: black;
+    outline: none;
+    text-decoration: none;
 }

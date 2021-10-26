@@ -56,19 +56,6 @@ router.post('/login', validateRegister, async (req, res) =>{
 })
 
 
-// GET /accounts/
-// router.get('/all', authenticateToken, async (req, res) => {
-//     const sql = `
-//       SELECT groups.id, groups.name, users.id, users.email
-//         FROM groups
-//         INNER JOIN users
-//         WHERE users.email = '?'
-//   `;
-//     const dbResult = await dbAction(sql, [req.email]);
-//     if (dbResult === false) return dbFail(res);
-//     dbSuccess(res, dbResult);
-// })
-
 
 module.exports = router;
 

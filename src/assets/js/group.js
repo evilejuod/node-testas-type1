@@ -76,7 +76,7 @@ add.onclick = async (event) => {
     event.preventDefault();
     const groupIdInput = document.querySelector('.groupId');
 
-    const requestBody = await JSON.stringify({
+    const requestBody = JSON.stringify({
         id_group: groupIdInput.value
     })
 

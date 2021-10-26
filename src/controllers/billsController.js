@@ -46,11 +46,33 @@ const addGroup = async (req, res) => {
 
 };
 
-const addBill = (req, res) => {
+const addBill = async (req, res) => {
+  const userFromToken = getUserFromJwt(req.get('Authorization'));
+
+  const billsSql = 'SELECT * FROM bills WHERE group_id = ?';
+  const user = await dbAction(billsSql, [userFromToken.email]);
+
+  const insertSql = `INSERT INTO bills (group_id, amount, description) VALUES (?, ?, ?)`;
+
+  const result = await dbAction(insertSql, [req.body.id_group, user[0].id, req.body.amount, req.body.description]);
+  res.send(result)
+
 
 }
 
-const billData = (req, res) => {
+const billData = async (req, res) => {
+  const userFromToken = getUserFromJwt(req.get('Authorization'));
+
+  const billsSql = 'SELECT * FROM bills WHERE group_id = ?';
+  const user = await dbAction(billsSql, [userFromToken.email]);
+
+  const groupsSql = ` 
+    SELECT * FROM bills WHERE group_id = ?
+  `;
+
+  const groupsBills = await dbAction(groupsSql, [user[0].id])
+
+  res.send(groupsBills)
 
 }
 
