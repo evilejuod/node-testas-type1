@@ -4,7 +4,7 @@ const URL = 'http://localhost:3000'
 const amount = document.querySelector('.amount')
 const description = document.querySelector('.description')
 const add = document.querySelector('#btn')
-const table = document.querySelector('.table')
+const myTable = document.querySelector('#myTable')
 
 const idColumn = document.querySelector('.idColumn')
 const descriptionColumn = document.querySelector('.descriptionColumn')
@@ -12,7 +12,7 @@ const amountColumn = document.querySelector('.amountColumn')
 
 const { email, token } = getUser();
 
-
+//
 
 function getUser() {
     const email = localStorage.getItem('email');
@@ -49,29 +49,19 @@ async function getPost() {
     throw new Error('no posts found');
 }
 
-function generatePosts(dataArr, idColumn, descriptionColumn, amountColumn) {
-    idColumn.innerHTML = dataArr.map((post) => `
-        <td>${post.id}</td>
+
+function generatePosts(dataArr, myTable) {
+    myTable.innerHTML = dataArr.map((post) => `
+
+       <tr>
+            <td>${post.id}</td>
+            <td>${post.description}</td>
+            <td>$ ${post.amount}</td>
+        </tr>
         `,
     ) .join('');
-    descriptionColumn.innerHTML = dataArr.map((post) => `
-        <td>${post.description}</td>
-        `,
-    ) .join('');
-    amountColumn.innerHTML = dataArr.map((post) => `
-       <td>$ ${post.amount}</td>
-        `,
-    ) .join('');
+
 }
-// function generatePosts(dataArr, table, idColumn, descriptionColumn, amountColumn) {
-//     table.innerHTML = dataArr.map((post) => `
-//         <td>${post.id}</td>
-//         <td>${post.description}</td>
-//         <td>$ ${post.amount}</td>
-//         `,
-//     ) .join('');
-//
-// }
 
 
 async function postData(urlPath = '', reqMethod = 'POST') {
@@ -107,10 +97,10 @@ add.onclick = async (event) => {
     descriptionInput.value = ''
 
     fetchData('/bills/').then(data => {
-        generatePosts(data, idColumn, descriptionColumn, amountColumn);
+        generatePosts(data, myTable);
     });
 }
 
 fetchData('/bills/groups').then(data => {
-    generatePosts(data, idColumn, descriptionColumn, amountColumn);
+    generatePosts(data, myTable);
 });
