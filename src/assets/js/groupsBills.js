@@ -4,23 +4,39 @@ const URL = 'http://localhost:3000'
 const amount = document.querySelector('.amount')
 const description = document.querySelector('.description')
 const add = document.querySelector('#btn')
+const table = document.querySelector('.table')
 
 const idColumn = document.querySelector('.idColumn')
 const descriptionColumn = document.querySelector('.descriptionColumn')
 const amountColumn = document.querySelector('.amountColumn')
 
+const { email, token } = getUser();
 
+
+
+function getUser() {
+    const email = localStorage.getItem('email');
+    const token = localStorage.getItem('token');
+    if (email && token) {
+        return {
+            email,
+            token,
+        };
+    }
+    return false;
+}
 
 async function fetchData(urlPath = '', reqMethod = 'GET') {
     const resp = await fetch(`${URL}${urlPath}`, {
         method: reqMethod,
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+            // 'Accept': 'application/json',
+            // 'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
     });
-    return await resp.json();
+    const dataFromResp = await resp.json();
+    return dataFromResp;
 }
 
 
@@ -39,14 +55,24 @@ function generatePosts(dataArr, idColumn, descriptionColumn, amountColumn) {
         `,
     ) .join('');
     descriptionColumn.innerHTML = dataArr.map((post) => `
-        <td>${post.id}</td>
+        <td>${post.description}</td>
         `,
     ) .join('');
     amountColumn.innerHTML = dataArr.map((post) => `
-       <td>$ ${post.id}</td>
+       <td>$ ${post.amount}</td>
         `,
     ) .join('');
 }
+// function generatePosts(dataArr, table, idColumn, descriptionColumn, amountColumn) {
+//     table.innerHTML = dataArr.map((post) => `
+//         <td>${post.id}</td>
+//         <td>${post.description}</td>
+//         <td>$ ${post.amount}</td>
+//         `,
+//     ) .join('');
+//
+// }
+
 
 async function postData(urlPath = '', reqMethod = 'POST') {
     const resp = await fetch(`${URL}${urlPath}`, {

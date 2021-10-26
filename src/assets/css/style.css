@@ -130,10 +130,7 @@ td, th{
     height: 37px;
     padding: 0 20px;
 }
-a:active, :focus{
-    outline: none;
-    border: 0;
-}
+
 .idText{
     color: black;
     outline: none;
