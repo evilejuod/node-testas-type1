@@ -20,6 +20,7 @@ function authenticateToken(req, res, next) {
     }
     // token valid and present
     req.email = data.email;
+
     next();
   });
 }

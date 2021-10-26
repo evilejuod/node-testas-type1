@@ -44,7 +44,7 @@ router.post('/login', validateRegister, async (req, res) =>{
         return dbFail(res, 'passwords not match');
     }
     // pass match
-    const token = jwt.sign({ email: req.body.email }, jwtSecret, {
+    const token = jwt.sign({ email: req.body.email, id: dbResult.id }, jwtSecret, {
         expiresIn: '48h',
     });
 

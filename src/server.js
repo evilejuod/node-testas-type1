@@ -25,7 +25,7 @@ app.use(express.static(staticPath));
 
 // Routes import
 const accountsRoutes = require('./routes/v1/accountsRoutes');
-const billsRoutes = require('./routes/v1/bills');
+const billsRoutes = require('./routes/v1/billsRoutes');
 
 // Use routes
 app.use('/accounts', accountsRoutes);
