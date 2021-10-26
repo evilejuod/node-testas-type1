@@ -4,6 +4,7 @@ const { hashValue, verifyHash } = require('../../utils/hashHelper');
 const { validateRegister } = require('../../utils/validateHelper');
 const jwt = require('jsonwebtoken');
 const { jwtSecret, dbConfig} = require('../../config');
+const {authenticateToken} = require("../../utils/middleware");
 // const mysql = require('mysql2/promise')
 
 const router = express.Router();
@@ -54,4 +55,20 @@ router.post('/login', validateRegister, async (req, res) =>{
     dbSuccess(res, logInUser);
 })
 
+
+// GET /accounts/
+// router.get('/all', authenticateToken, async (req, res) => {
+//     const sql = `
+//       SELECT groups.id, groups.name, users.id, users.email
+//         FROM groups
+//         INNER JOIN users
+//         WHERE users.email = '?'
+//   `;
+//     const dbResult = await dbAction(sql, [req.email]);
+//     if (dbResult === false) return dbFail(res);
+//     dbSuccess(res, dbResult);
+// })
+
+
 module.exports = router;
+

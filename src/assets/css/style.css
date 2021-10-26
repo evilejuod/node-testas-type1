@@ -54,6 +54,7 @@ input{
     height: 30px;
     width: 100%;
     border: 1px solid #b7b7b7;
+    padding: 0 15px;
 }
 
 .btn{
@@ -71,4 +72,50 @@ input{
     color: black;
     font-weight: bold;
     font-size: 12px;
+}
+/* group */
+
+.groupContainer{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+.cards-group{
+    width: 200px;
+    height: 120px;
+    border: 1px solid #b7b7b7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+}
+.text{
+    color: #888888;
+    margin-top: 5px;
+}
+.billsContainer{
+    width: 80%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+
+}
+table{
+    margin-top: 30px;
+    width: 80%;
+}
+table tr:nth-child(even){
+    background-color: #f2f2f2;
+
+}
+td, th{
+    height: 37px;
+    padding: 0 20px;
 }
